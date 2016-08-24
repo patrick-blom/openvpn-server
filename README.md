@@ -1,5 +1,5 @@
 #openvpn-server
-an automated openvpn server deployment using ansible
+an automated openvpn-server-deployment using ansible
 
 #requirements
 - ansible 2.x
