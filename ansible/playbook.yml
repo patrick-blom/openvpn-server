@@ -1,0 +1,6 @@
+---
+- name: "run openvpn server installation on all nodes"
+  hosts: all
+  roles:
+    - common
+    - openvpn
