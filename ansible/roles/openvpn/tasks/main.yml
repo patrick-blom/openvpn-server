@@ -1,7 +1,21 @@
 ---
 - name: "install necessary packages"
   apt: pkg={{ item }} state=latest
-  sudo: yes
-  with_items:
-    - openvpn
-    - easy-rsa
+  become: yes
+  with_items: "{{ openvpn.packages }}"
+
+- name: "gathering file info"
+  stat:
+    path: "{{ openvpn.server.example_file }}"
+  register: example_conf
+
+- name: "check for sample config"
+  fail:
+    msg: "could not find sample server config"
+  when: example_conf.stat.exists == false
+
+- name: "unpack sample conf"
+  shell: gunzip -c "{{ openvpn.server.example_file }}" > "{{ openvpn.server.config_file }}"
+  args:
+    creates: "{{ openvpn.server.config_file }}"
+  become: yes

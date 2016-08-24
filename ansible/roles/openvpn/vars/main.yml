@@ -1,0 +1,7 @@
+openvpn:
+  server:
+    example_file: /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz
+    config_file: /etc/openvpn/server.conf
+  packages:
+    - openvpn
+    - easy-rsa

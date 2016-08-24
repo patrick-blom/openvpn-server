@@ -1,4 +1,9 @@
 ---
 - name: "update apt cache"
   apt: update_cache=yes cache_valid_time=3600
-  sudo: yes
+  become: yes
+
+- name: "install handy packages"
+  apt: pkg={{ item }} state=latest
+  become: yes
+  with_items: "{{common_packages}}"
