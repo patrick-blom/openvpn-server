@@ -2,6 +2,9 @@ openvpn:
   server:
     example_file: /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz
     config_file: /etc/openvpn/server.conf
+    dns:
+      main_dns: 213.73.91.35 #(dnscache.berlin.ccc.de)
+      secondary_dns: 194.150.168.168 #(dns.as250.net; Berlin/Frankfurt)
   packages:
     - openvpn
     - easy-rsa

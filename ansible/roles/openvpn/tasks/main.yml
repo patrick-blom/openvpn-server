@@ -19,3 +19,17 @@
   args:
     creates: "{{ openvpn.server.config_file }}"
   become: yes
+
+- name: "updating server.conf"
+  replace:
+    dest: "{{ openvpn.server.config_file }}"
+    regexp: "{{ item.regexp }}"
+    replace: "{{ item.line }}"
+  with_items:
+    - { regexp: '^dh\sdh1024\.pem$', line: 'dh dh2048.pem' }
+    - { regexp: '^;push\s"redirect-gateway\sdef1\sbypass-dhcp"$', line: 'push "redirect-gateway def1 bypass-dhcp"' }
+    - { regexp: '^;push\s"dhcp-option\sDNS\s208\.67\.222\.222"$', line: 'push "dhcp-option DNS {{ openvpn.server.dns.main_dns }}"' }
+    - { regexp: '^;push\s"dhcp-option\sDNS\s208\.67\.220\.220"$', line: 'push "dhcp-option DNS {{ openvpn.server.dns.secondary_dns }}"' }
+    - { regexp: '^;user\snobody$', line: 'user nobody' }
+    - { regexp: '^;group\snogroup$', line: 'group nogroup' }
+  become: yes

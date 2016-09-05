@@ -1,0 +1,42 @@
+---
+- name: "set current ipv4 forwarding"
+  shell: echo 1 > /proc/sys/net/ipv4/ip_forward
+  become: yes
+
+- name: "set persisten ipv4 forwarding"
+  replace:
+    dest: "/etc/sysctl.conf"
+    regexp: "{{ item.regexp }}"
+    replace: "{{ item.line }}"
+  with_items:
+  - { regexp: '^#net\.ipv4\.ip_forward=1$', line: 'net.ipv4.ip_forward=1' }
+  become: yes
+
+- name: "copy firewall"
+  copy:
+    src: "files/firewall.sh"
+    dest: "{{ firewall.home_dir }}/firewall.sh"
+    owner: "{{ firewall.privileges.user }}"
+    group: "{{ firewall.privileges.group }}"
+    mode: "u+rwx,g-wx,o-rwx"
+
+- name: "executing firewall"
+  shell: /bin/bash {{ firewall.home_dir }}/firewall.sh
+  become: yes
+
+- name: "check if firewall is still linked"
+  shell: grep "firewall.sh" /etc/rc.local
+  register: checkfirewall
+  always_run: true
+  ignore_errors: true
+  changed_when: false
+  become: yes
+
+- name: "persisting the firewall to rc.local"
+  lineinfile:
+    dest: "/etc/rc.local"
+    line: ".{{ firewall.home_dir }}/firewall.sh"
+    insertbefore: "exit 0"
+    state: present
+  when: checkfirewall.rc == 1
+  become: yes
