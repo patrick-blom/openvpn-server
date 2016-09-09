@@ -5,3 +5,4 @@
     - common
     - firewall
     - openvpn
+    - easy-rsa

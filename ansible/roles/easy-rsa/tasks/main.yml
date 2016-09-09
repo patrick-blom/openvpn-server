@@ -1,0 +1,26 @@
+---
+- name: "copying sample files"
+  shell: cp -r "{{ easy_rsa.config.sample_folder }}"  "{{ easy_rsa.config.openvpn_folder }}"
+  args:
+    creates: "{{ easy_rsa.config.openvpn_easy_rsa_folder }}"
+  become: yes
+
+- name: "creating the keys directory"
+  file:
+    path: "{{ easy_rsa.config.openvpn_keys_folder }}"
+    state: directory
+  become: yes
+
+- name: "generating pem file"
+  shell: "openssl dhparam -out {{ easy_rsa.config.openvpn_folder }}/dh2048.pem 2048"
+  args:
+    creates: "{{ easy_rsa.config.openvpn_folder }}/dh2048.pem"
+  become: yes
+
+- name: "initializing the default vars"
+  shell: ". {{ easy_rsa.config.openvpn_easy_rsa_folder }}/vars"
+  become: yes
+
+- name: "cleaning the keys directory"
+  shell: ". {{ easy_rsa.config.openvpn_easy_rsa_folder }}/clean-all"
+  become: yes
