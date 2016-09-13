@@ -5,6 +5,17 @@ openvpn:
     dns:
       main_dns: 213.73.91.35 #(dnscache.berlin.ccc.de)
       secondary_dns: 194.150.168.168 #(dns.as250.net; Berlin/Frankfurt)
+    cert:
+        vars:
+          server_name: 'server'
+          country: 'DE'
+          province: 'NRW'
+          city: 'Ochtrup'
+          organisation: 'VELVETSANDWICH'
+          email: 'info@bl0m.de'
+          organisation_unit: 'personal'
+  clients:
+      - { name: patrick }
   packages:
     - openvpn
     - easy-rsa

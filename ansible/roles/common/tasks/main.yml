@@ -6,4 +6,11 @@
 - name: "install handy packages"
   apt: pkg={{ item }} state=latest
   become: yes
-  with_items: "{{common_packages}}"
+  with_items: "{{ common_packages }}"
+
+- name: "installing python deps"
+  pip:
+    name: "{{ item.name }}"
+    version: "{{ item.version }}"
+  become: yes
+  with_items: "{{ pip_packages }}"

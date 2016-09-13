@@ -18,9 +18,31 @@
   become: yes
 
 - name: "initializing the default vars"
-  shell: ". {{ easy_rsa.config.openvpn_easy_rsa_folder }}/vars"
+  shell: " ./vars "
+  args:
+    chdir: "{{ easy_rsa.config.openvpn_easy_rsa_folder }}"
   become: yes
 
-- name: "cleaning the keys directory"
-  shell: ". {{ easy_rsa.config.openvpn_easy_rsa_folder }}/clean-all"
-  become: yes
+
+
+#- name: "cleaning the keys directory"
+#  shell: ". /clean-all"
+#  args:
+#    chdir: "{{ easy_rsa.config.openvpn_easy_rsa_folder }}"
+#  become: yes
+
+#- name: "building the ca"
+#  expect:
+#    command: /bin/sh build-ca
+#    chdir: "{{ easy_rsa.config.openvpn_easy_rsa_folder }}"
+#    responses:
+#      Question:
+#       - "{{ openvpn.server.cert.vars.country }}"
+#        - "{{ openvpn.server.cert.vars.province }}"
+#        - "{{ openvpn.server.cert.vars.city }}"
+#        - "{{ openvpn.server.cert.vars.organisation }}"
+#        - "{{ openvpn.server.cert.vars.organisation_unit }}"
+#        - "{{ openvpn.server.cert.vars.organisation }}"
+#        - "{{ openvpn.server.cert.vars.server_name }} {{ openvpn.server.cert.vars.country }}"
+#        - "{{ openvpn.server.cert.vars.email }}"
+#  become: yes
