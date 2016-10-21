@@ -1,6 +1,9 @@
 #openvpn-server
 an automated openvpn-server-deployment using ansible
 
+#WORK IN PROGRESS
+This project is under current development an not ready for usage
+
 #requirements
 - ansible 2.x
 - vagrant
