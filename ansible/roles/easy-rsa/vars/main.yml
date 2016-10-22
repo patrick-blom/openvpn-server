@@ -1,6 +1,0 @@
-easy_rsa:
-  config:
-    sample_folder: /usr/share/easy-rsa/
-    openvpn_folder: /etc/openvpn
-    openvpn_easy_rsa_folder: /etc/openvpn/easy-rsa
-    openvpn_keys_folder: /etc/openvpn/easy-rsa/keys

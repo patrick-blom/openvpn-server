@@ -19,6 +19,7 @@
     owner: "{{ firewall.privileges.user }}"
     group: "{{ firewall.privileges.group }}"
     mode: "u+rwx,g-wx,o-rwx"
+  become: yes
 
 - name: "executing firewall"
   shell: /bin/bash {{ firewall.home_dir }}/firewall.sh

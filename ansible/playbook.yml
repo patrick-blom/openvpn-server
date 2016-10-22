@@ -1,8 +1,13 @@
 ---
 - name: "run openvpn server installation on all nodes"
   hosts: all
+  vars:
+    easy_rsa_clients:
+        - patrick
+        - pine64
+    openvpn_hostip: 192.168.57.100
   roles:
     - common
     - firewall
+    - easy_rsa
     - openvpn
-    - easy-rsa

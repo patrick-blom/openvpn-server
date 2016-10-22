@@ -1,5 +1,5 @@
 firewall:
-  home_dir: /home/vagrant
+  home_dir: /root
   privileges:
-    user: vagrant
-    group: vagrant
+    user: root
+    group: root

@@ -1,0 +1,14 @@
+---
+# defaults file for easy_rsa
+
+easy_rsa_ca_expire: 3650
+easy_rsa_clients: []
+easy_rsa_key_city: "Berlin"
+easy_rsa_key_country: "DE"
+easy_rsa_key_email: "info@bl0m.de"
+easy_rsa_key_expire: 3650
+easy_rsa_key_name: "server"
+easy_rsa_key_org: "non-commercial"
+easy_rsa_key_ou: "nonprofit"
+easy_rsa_key_province: "N/A"
+easy_rsa_key_size: 2048

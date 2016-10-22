@@ -1,0 +1,12 @@
+---
+# tasks file for easy_rsa (Ubuntu specific)
+
+- name: Install easy-rsa packages
+  become: yes
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ easy_rsa_packages }}"
+  tags:
+    - easy_rsa
