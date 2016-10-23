@@ -42,7 +42,7 @@
 
 - name: "creating client directories"
   file:
-    path: {{ openvpn.server.clients_dir }}/{{ item }}
+    path: "{{ openvpn.server.clients_dir }}/{{ item }}"
     state: directory
   with_items:
       - "{{ easy_rsa_clients }}"

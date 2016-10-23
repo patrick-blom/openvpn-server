@@ -3,6 +3,8 @@ an automated openvpn-server-deployment using ansible
 
 #requirements
 - ansible 2.x
+- python 2.x
+- ssh
 - vagrant
 
 #usage
