@@ -2,6 +2,7 @@ openvpn:
   server:
     examples_dir: /usr/share/doc/openvpn/examples/sample-config-files
     config_dir: /etc/openvpn
+    cleints_dir: /root/clients
     dns:
       main_dns: 213.73.91.35 #(dnscache.berlin.ccc.de)
       secondary_dns: 194.150.168.168 #(dns.as250.net; Berlin/Frankfurt)

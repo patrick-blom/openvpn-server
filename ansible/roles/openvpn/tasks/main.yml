@@ -42,16 +42,16 @@
 
 - name: "creating client directories"
   file:
-    path: /root/clients/{{ item }}
+    path: {{ openvpn.server.clients_dir }}/{{ item }}
     state: directory
   with_items:
       - "{{ easy_rsa_clients }}"
   become: yes
 
 - name: "coping neccessary client files"
-  shell: cp {{ easy_rsa_key_dir }}/ca.crt {{ easy_rsa_key_dir }}/{{ item }}.crt {{ easy_rsa_key_dir }}/{{ item }}.key {{ easy_rsa_key_dir }}/{{ item }}.csr /root/clients/{{ item }}/
+  shell: cp {{ easy_rsa_key_dir }}/ca.crt {{ easy_rsa_key_dir }}/{{ item }}.crt {{ easy_rsa_key_dir }}/{{ item }}.key {{ easy_rsa_key_dir }}/{{ item }}.csr {{ openvpn.server.clients_dir }}/{{ item }}/
   args:
-      creates: "/root/clients/{{ item }}/ca.crt"
+      creates: "{{ openvpn.server.clients_dir }}/{{ item }}/ca.crt"
   with_items:
       - "{{ easy_rsa_clients }}"
   become: yes
@@ -71,15 +71,15 @@
   become: yes
 
 - name: "copy sample config file to clients"
-  shell: cp {{ openvpn.server.examples_dir }}/client.conf /root/clients/{{ item }}/{{ item }}.ovpn
+  shell: cp {{ openvpn.server.examples_dir }}/client.conf {{ openvpn.server.clients_dir }}/{{ item }}/{{ item }}.ovpn
   args:
-      creates: "/root/clients/{{ item }}/{{ item }}.ovpn"
+      creates: "{{ openvpn.server.clients_dir }}/{{ item }}/{{ item }}.ovpn"
   with_items:
       - "{{ easy_rsa_clients }}"
   become: yes
 
 - name: "building the conf files"
-  shell: echo "<ca>\n`cat /root/clients/{{ item }}/ca.crt`\n</ca>\n<cert>\n`cat /root/clients/{{ item }}/{{ item }}.crt`\n</cert>\n<key>\n`cat /root/clients/{{ item }}/{{ item }}.key`\n</key>" >> /root/clients/{{ item }}/{{ item }}.ovpn
+  shell: echo "<ca>\n`cat {{ openvpn.server.clients_dir }}/{{ item }}/ca.crt`\n</ca>\n<cert>\n`cat {{ openvpn.server.clients_dir }}/{{ item }}/{{ item }}.crt`\n</cert>\n<key>\n`cat {{ openvpn.server.clients_dir }}/{{ item }}/{{ item }}.key`\n</key>" >> {{ openvpn.server.clients_dir }}/{{ item }}/{{ item }}.ovpn
   with_items:
       - "{{ easy_rsa_clients }}"
   become: yes

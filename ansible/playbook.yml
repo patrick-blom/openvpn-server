@@ -3,8 +3,8 @@
   hosts: all
   vars:
     easy_rsa_clients:
-        - patrick
-        - pine64
+        - jondoe
+        - maxpower
     openvpn_hostip: 192.168.57.100
   roles:
     - common
