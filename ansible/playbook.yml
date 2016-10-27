@@ -2,6 +2,9 @@
 - name: "run openvpn server installation on all nodes"
   hosts: all
   vars:
+    easy_rsa_key_city: "Berlin"
+    easy_rsa_key_country: "DE"
+    easy_rsa_key_email: "foo@bar.de"
     easy_rsa_clients:
         - jondoe
         - maxpower

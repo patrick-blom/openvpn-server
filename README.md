@@ -16,6 +16,7 @@ an automated openvpn-server-deployment using ansible
 
 #usefull informations
 - You can configure the openvpn users using the `easy_rsa_clients` variable inside the playbook.yml . Add as much as you want.
+- You can change the Country and email setting using the  `easy_rsa_*` variables inside the playbook.yml
 - Ansible will generate the `.ovpn` client files in /root/clients/nameOfYourClient.
 - The `.ovpn` files contain all necessary client informations.
 - If you want to use the roles on an other server create an new inventory file and change the `openvpn_hostip` variable inside the playbook.yml
