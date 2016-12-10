@@ -32,6 +32,7 @@
     - { regexp: '^;push\s"dhcp-option\sDNS\s208\.67\.220\.220"$', line: 'push "dhcp-option DNS {{ openvpn.server.dns.secondary_dns }}"' }
     - { regexp: '^;user\snobody$', line: 'user nobody' }
     - { regexp: '^;group\snogroup$', line: 'group nogroup' }
+    - { regexp: '^;cipher\sAES-128-CBC\s\s\s#\sAES$', line: 'cipher AES-128-CBC   # AES' }
   become: yes
 
 - name: "coping neccessary server files"
@@ -68,6 +69,7 @@
     - { regexp: '^ca\sca\.crt$', line: '#ca ca.crt' }
     - { regexp: '^cert\sclient\.crt$', line: '#cert client.crt' }
     - { regexp: '^key\sclient\.key$', line: '#key client.key' }
+    - { regexp: '^;cipher\sx$', line: 'cipher AES-128-CBC' }
   become: yes
 
 - name: "copy sample config file to clients"
