@@ -1,20 +1,20 @@
-#openvpn-server
+# openvpn-server
 an automated openvpn-server-deployment using ansible
 
-#requirements
+# requirements
 - ansible 2.x
 - python 2.x
 - ssh
 - vagrant
 
-#usage
+# usage
 1. clone the repository
 2. enter the vagrant folder `cd ./vagrant`
 3. run `vagrant up`
 4. enter the ansible folder `cd ../ansible`
 5. run `ansible-playbook playbook.yml --inventory=inventory-virtualbox.ini`
 
-#usefull informations
+# usefull informations
 - You can configure the openvpn users using the `easy_rsa_clients` variable inside the playbook.yml . Add as much as you want.
 - You can change the Country and email setting using the  `easy_rsa_*` variables inside the playbook.yml
 - Ansible will generate the `.ovpn` client files in /root/clients/nameOfYourClient.
